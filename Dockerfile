@@ -3,7 +3,7 @@ FROM php:8.1.4-apache
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmemcached-dev libbz2-dev \
         libssl-dev librabbitmq-dev libxml2-dev libxslt1.1 libxslt1-dev libzip-dev libpq-dev \
-        unzip libc-client-dev libkrb5-dev libtidy-dev git subversion \
+        unzip libc-client-dev libkrb5-dev libtidy-dev git subversion mc nano iputils-ping \
     && a2enmod rewrite \
     && docker-php-ext-configure zip \
     && docker-php-ext-configure gd --with-jpeg \
