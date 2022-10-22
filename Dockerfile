@@ -1,4 +1,4 @@
-FROM php:8.1.9-apache
+FROM php:8.1.11-apache
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev libjpeg62-turbo-dev libpng-dev libicu-dev libmemcached-dev libbz2-dev \
         libssl-dev librabbitmq-dev libxml2-dev libxslt1.1 libxslt1-dev libzip-dev libpq-dev \
@@ -11,6 +11,7 @@ RUN printf "\n" | pecl install redis \
     && printf "\n" | pecl install memcached \
     && printf "\n" | pecl install mongodb \
     && printf "\n" | pecl install xdebug \
-    && docker-php-ext-enable redis memcached mongodb xdebug \
+    && printf "\n" | pecl install amqp \
+    && docker-php-ext-enable redis memcached mongodb xdebug amqp \
     && docker-php-ext-install bcmath bz2 calendar exif opcache mysqli pdo_mysql pgsql pdo_pgsql intl zip soap gd xsl pcntl sockets imap tidy
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
