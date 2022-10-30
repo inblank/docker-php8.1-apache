@@ -15,3 +15,14 @@ RUN printf "\n" | pecl install redis \
     && docker-php-ext-enable redis memcached mongodb xdebug amqp \
     && docker-php-ext-install bcmath bz2 calendar exif opcache mysqli pdo_mysql pgsql pdo_pgsql intl zip soap gd xsl pcntl sockets imap tidy
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN mkdir /opt/php-rar \
+    && cd /opt/php-rar \
+    && git clone https://github.com/cataphract/php-rar.git . \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install \
+    && cd ../ \
+    && rm -rf /opt/php-rar \
+    && docker-php-ext-enable rar \
+    && pecl clear-cache
